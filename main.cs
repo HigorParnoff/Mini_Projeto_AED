@@ -35,9 +35,22 @@ seguintes especificações:
 namespace estoque {
   class MainClass {
     public static void Main (string[] args) {
-      Console.WriteLine ("Hello World");
+      Estoque estoque = new Estoque();
+      bool run = true;
+
+      while(run){
+        Console.WriteLine ("\n\nPacote identificado");
+        try{        
+          if(estoque.braco.LeitorCodigo()){}
+          if(estoque.braco.GuardarPacote( estoque.DefinirLocal() )){  }
+        } catch {}
+        string nada = Console.ReadLine ();
+      }
+      
+      
+
     }
   }
 }
 
-https://github.com/HigorParnoff/Mini_Projeto_AED/invitations
+//https://github.com/HigorParnoff/Mini_Projeto_AED/invitations
