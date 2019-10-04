@@ -18,11 +18,10 @@ namespace estoque {
       if(Posicionar(0)){
         if(Garra(true)){
           if(Posicionar(coord)){
-            if(Posicionar(coord)){
-              if(Garra(false)){
-                if(Posicionar(0)){
-                  return true;
-                }
+            if(Garra(false)){
+              if(Posicionar(0)){
+                Console.WriteLine ("Pacote posicionado");
+                return true;
               }
             }
           }
@@ -34,7 +33,9 @@ namespace estoque {
     public bool Posicionar (int local) {
       if((local >= 0) && (local <= 1000)){
         posicao = local;
-        Console.WriteLine ("Braço posicionado");
+        string suporte = "";
+        if(local != 0) { suporte =  String.Format("{0:0}", local); }
+        Console.WriteLine ("Braço {0} {1}", local == 0? "na posição inicial": "posicionado na coordenada:", suporte);
         return true;
       }
       return false;
@@ -49,11 +50,11 @@ namespace estoque {
       return false;
     }
 
-    public int LeitorCodigo () {
+    public bool LeitorCodigo() {
       Random randNum = new Random();
       Console.WriteLine ("Código lido");
-      codPacoteAtual = randNum.Next(1,10);
-      return codPacoteAtual;
+      codPacoteAtual = randNum.Next(1,4);
+      return true;
     }
 
     public int getPosicao() { return posicao;}
