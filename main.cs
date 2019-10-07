@@ -40,12 +40,14 @@ namespace estoque {
 
       while(run){
         Console.WriteLine ("\n\nPacote identificado");
-        try{        
-          if(estoque.braco.LeitorCodigo()){}
-          if(estoque.braco.GuardarPacote( estoque.DefinirLocal() )){  }
-        } catch {}
+                
+        estoque.LerCodigo();
+        estoque.Guardar();
+        
         string nada = Console.ReadLine ();
+        if(nada == "sair"){ run = false; }
       }
+      estoque.Inventario();
       
       
 
