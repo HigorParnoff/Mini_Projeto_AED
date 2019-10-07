@@ -15,44 +15,44 @@ namespace estoque {
     }
 
     public bool GuardarPacote(int coord){
-      if(Posicionar(0)){
-        if(Garra(true)){
+      if(Posicionar(0, false)){
+        if(Garra(true, false)){
           if(Posicionar(coord)){
-            if(Garra(false)){
-              if(Posicionar(0)){
+            if(Garra(false, false)){
+              if(Posicionar(0, false)){
                 Console.WriteLine ("Pacote posicionado");
                 return true;
-              }
-            }
-          }
-        }
-      }    
+              } else { Console.WriteLine ("Erro ao posicionar para coordenada inicial"); }
+            } else { Console.WriteLine ("Garra não fechou"); }
+          } else { Console.WriteLine ("Posicionamento negado"); }
+        } else { Console.WriteLine ("Garra não abriu"); }
+      } else { Console.WriteLine ("Erro ao posicionar para coordenada inicial"); }    
       return false;
     }
 
-    public bool Posicionar (int local) {
+    public bool Posicionar (int local, bool check = true) {
       if((local >= 0) && (local <= 1000)){
         posicao = local;
         string suporte = "";
         if(local != 0) { suporte =  String.Format("{0:0}", local); }
-        Console.WriteLine ("Braço {0} {1}", local == 0? "na posição inicial": "posicionado na coordenada:", suporte);
+        if(check){ Console.WriteLine ("Braço {0} {1}", local == 0? "na posição inicial": "posicionado na coordenada:", suporte); }
         return true;
-      }
+      } else { Console.WriteLine ("Coordenada regeitada"); }   
       return false;
     }
 
-    public bool Garra (bool status) {
+    public bool Garra (bool status, bool check = true) {
       if(!garra == status){ 
         garra = !garra;
-        Console.WriteLine ("Garra {0}", garra? "fechada": "aberta");
+        if(check){ Console.WriteLine ("Garra {0}", garra? "fechada": "aberta"); }
         return true;
-      } else { Console.WriteLine ("A garra já esta {0}", garra? "fechada": "aberta"); }
+      } else if(check) { Console.WriteLine ("A garra já esta {0}", garra? "fechada": "aberta"); }
       return false;
     }
 
-    public bool LeitorCodigo() {
+    public bool LeitorCodigo(bool check = true) {
       Random randNum = new Random();
-      Console.WriteLine ("Código lido");
+      if(check){ Console.WriteLine ("Código lido"); }
       codPacoteAtual = randNum.Next(1,4);
       return true;
     }
